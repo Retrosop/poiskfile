@@ -1,4 +1,4 @@
-using MySql.Data.MySqlClient;
+using System.Diagnostics;
 //Проба git
 
 namespace Poiskfile
@@ -55,58 +55,13 @@ namespace Poiskfile
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //string serverName = txtbxServer.Text;
-            //string userName = txtbxLogin.Text;
-            //string dbName = txtbxDB.Text;
-            //string port = txtbxPort.Text;
-            //string password = txtbxPassword.Text;
-            //string connStr = "server=" + serverName +
-            //    ";user=" + userName +
-            //    ";database=" + dbName +
-            //    ";port=" + port +
-            //    ";password=" + password + ";";
-            //conn = new MySqlConnection(connStr);
-            //conn.Open();
+        
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MySqlConnection conn;
-            string serverName = txtbxServer.Text;
-            string userName = txtbxLogin.Text;
-            string dbName = txtbxDB.Text;
-            string port = txtbxPort.Text;
-            string password = txtbxPassword.Text;
-            string connStr = "server=" + serverName +
-                ";user=" + userName +
-                ";database=" + dbName +
-                ";port=" + port +
-                ";password=" + password + ";";
-            conn = new MySqlConnection(connStr);
-            conn.Open();
+      
 
-
-
-            string sql = "INSERT INTO meteonasa (datep, wnd1) values ('2022-10-01 12:12:01',1)"; // Строка запроса
-            MySqlCommand cmd1 = new MySqlCommand(sql, conn);
-            cmd1.ExecuteReader();
-
-            conn.Close();
-
-     
-           
-            conn = new MySqlConnection(connStr);
-            conn.Open();
-
-            sql = "SELECT * FROM meteonasa limit 100"; // Строка запроса
-            MySqlCommand  cmd = new MySqlCommand(sql, conn);
-            MySqlDataReader reader = cmd.ExecuteReader();
-            while (reader.Read())
-            {
-                txtbxSQL.Text += reader["wnd1"];
-            }
-
-            conn.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -116,24 +71,7 @@ namespace Poiskfile
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-
-            MySqlConnection conn;
-            string serverName = txtbxServer.Text;
-            string userName = txtbxLogin.Text;
-            string dbName = txtbxDB.Text;
-            string port = txtbxPort.Text;
-            string password = txtbxPassword.Text;
-            string connStr = "server=" + serverName +
-                ";user=" + userName +
-                ";database=" + dbName +
-                ";port=" + port +
-                ";password=" + password + ";";
-            conn = new MySqlConnection(connStr);
-            conn.Open();
-
-
-
-         
+        
 
             
 
@@ -143,7 +81,7 @@ namespace Poiskfile
 
                 if (indexToText >= 0)
                 {
-                    Meteo =  new List<Meteorecord>();
+                    Meteo = new List<Meteorecord>();
                     string fName = file.Substring(textl.Length + 1);
                     File.Copy(file, Path.Combine(texto, fName), true);
 
@@ -162,33 +100,34 @@ namespace Poiskfile
                         var countRecord = 0;
                         foreach (string line in subs)
                         {
-                           if (countRecord >0) 
+                            if (countRecord > 0)
                                 try
                                 {
                                     var station = int.Parse(line.Split("\u0022,\u0022")[0]); //STATION
                                     var dates = line.Split("\u0022,\u0022")[1].Replace("T", " ");  //DATE
-                                    var wnd1 = int.Parse(line.Split("\u0022,\u0022")[11]); //WND(1)
-                                    var wnd2 = int.Parse(line.Split("\u0022,\u0022")[12]); //WND(2)
+                                    var wnd1 = line.Split("\u0022,\u0022")[11]; //WND(1)
+                                    var wnd2 = line.Split("\u0022,\u0022")[12]; //WND(2)
                                     var wnd3 = line.Split("\u0022,\u0022")[13]; //WND(3)
-                                    var wnd4 = int.Parse(line.Split("\u0022,\u0022")[14]); //WND(4)
-                                    var wnd5 = int.Parse(line.Split("\u0022,\u0022")[15]); //WND(5)
-                                    var tmp1 = int.Parse(line.Split("\u0022,\u0022")[24]); //TMP(1)
+                                    var wnd4 = line.Split("\u0022,\u0022")[14]; //WND(4)
+                                    var wnd5 = line.Split("\u0022,\u0022")[15]; //WND(5)
+                                    var tmp1 = line.Split("\u0022,\u0022")[24]; //TMP(1)
                                     var tmp2 = line.Split("\u0022,\u0022")[25]; //TMP(2)
-                                    var dew1 = int.Parse(line.Split("\u0022,\u0022")[26]); //DEW(1)
+                                    var dew1 = line.Split("\u0022,\u0022")[26]; //DEW(1)
                                     var dew2 = line.Split("\u0022,\u0022")[27]; //DEW(2)
-                                    var aa1 =  line.Split("\u0022,\u0022")[30]; //AA1(1)
-                                    var aa2 =  line.Split("\u0022,\u0022")[31]; //AA1(1)
-                                    var aa3 =  line.Split("\u0022,\u0022")[32]; //AA1(3)
-                                    var aa4 =  line.Split("\u0022,\u0022")[33]; //AA1(4)
-                                    Meteo.Add(new Meteorecord(station, dates, wnd1, wnd2, wnd3, wnd4,wnd5, tmp1, tmp2, dew1, dew2, aa1, aa2, aa3, aa4));
-                                } catch 
+                                    var aa1 = line.Split("\u0022,\u0022")[30]; //AA1(1)
+                                    var aa2 = line.Split("\u0022,\u0022")[31]; //AA1(1)
+                                    var aa3 = line.Split("\u0022,\u0022")[32]; //AA1(3)
+                                    var aa4 = line.Split("\u0022,\u0022")[33]; //AA1(4)
+                                    Meteo.Add(new Meteorecord(station, dates, wnd1, wnd2, wnd3, wnd4, wnd5, tmp1, tmp2, dew1, dew2, aa1, aa2, aa3, aa4));
+                                }
+                                catch
                                 {
-                                    MessageBox.Show("Значение строки line:"+line+":");
+                                   // MessageBox.Show("Значение строки line:" + line + ":");
                                 };
-             
+
 
                             countRecord++;
-                           
+
                         }
                     }
                     using (System.IO.StreamWriter filee = new System.IO.StreamWriter(Path.Combine(texto, fName)))
@@ -196,45 +135,55 @@ namespace Poiskfile
                         filee.Write(str);
                     }
 
-                    MessageBox.Show("Всего элементов в массиве:" + Meteo.Count + ":");
+                   // MessageBox.Show("Всего элементов в массиве:" + Meteo.Count + ":");
+
+                    Stopwatch stopwatch = new Stopwatch();
+                    
+                    //засекаем время начала операции
+                    stopwatch.Start();
+                   
+                    using (var db = new DataContext())
+                     {
 
 
-                    for (int i = 0; i < Meteo.Count; i++)
-                    {
-                        conn = new MySqlConnection(connStr);
-                        conn.Open();
-                      
-
-                        var aa11s = Meteo[i].Aa11 == "" ? "NULL" : Meteo[i].Aa11;
-                        var aa12s = Meteo[i].Aa12 == "" ? "NULL" : Meteo[i].Aa12;
-                     
-                        var aa14s = Meteo[i].Aa14 == "" ? "NULL" : Meteo[i].Aa14;
-
-                        string sql = $"INSERT INTO meteonasa (station,datep, wnd1,wnd2,wnd3,wnd4,wnd5,tmp1,tmp2,dew1,dew2,aa11,aa12,aa13,aa14) values " +
-                            $"(" +
-                            $"{Meteo[i].Station}," +
-                            $"'{Meteo[i].Dates}'," +
-                            $"{Meteo[i].Wnd1}," +
-                            $"{Meteo[i].Wnd2}," +
-                            $"'{Meteo[i].Wnd3}'," +
-                            $"{Meteo[i].Wnd4}," +
-                            $"{Meteo[i].Wnd5}," +
-                            $"{Meteo[i].Tmp1}," +
-                            $"'{Meteo[i].Tmp2}'," +
-                            $"{Meteo[i].Dew1}," +
-                            $"'{Meteo[i].Dew2}'," +
-                            $"{aa11s}," +
-                            $"{aa12s}," +
-                            $"'{Meteo[i].Aa13}'," +
-                            $"{aa14s})"; // Строка запроса
-                        //MessageBox.Show("Проверка запроса: " + sql);
-                        MySqlCommand cmd1 = new MySqlCommand(sql, conn);
-                        cmd1.ExecuteReader();
-                        conn.Close();
+                        for (int i = 0; i < Meteo.Count; i++)
+                        {
+                              var meteo = new MeteoData()
+                                {
+                                    station = Meteo[i].Station,
+                                    date = Meteo[i].Dates,
+                                    wnd1 = Meteo[i].Wnd1 == "" ? null : int.Parse(Meteo[i].Wnd1),
+                                    wnd2 = Meteo[i].Wnd2 == "" ? null : int.Parse(Meteo[i].Wnd2),
+                                    wnd3 = Meteo[i].Wnd3 == "" ? null : Meteo[i].Wnd3,
+                                    wnd4 = Meteo[i].Wnd4 == "" ? null : int.Parse(Meteo[i].Wnd4),
+                                    wnd5 = Meteo[i].Wnd5 == "" ? null : int.Parse(Meteo[i].Wnd5),
+                                    tmp1 = Meteo[i].Tmp1 == "" ? null : int.Parse(Meteo[i].Tmp1),
+                                    tmp2 = Meteo[i].Tmp2 == "" ? null : Meteo[i].Tmp2,
+                                    dew1 = Meteo[i].Dew1 == "" ? null : int.Parse(Meteo[i].Dew1),
+                                    dew2 = Meteo[i].Dew2 == "" ? null : Meteo[i].Dew2,
+                                    aa11 = Meteo[i].Aa11 == "" ? null : int.Parse(Meteo[i].Aa11),
+                                    aa12 = (Meteo[i].Aa12 == "" | Meteo[i].Aa12 == "U") ? null : int.Parse(Meteo[i].Aa12), //Uncorrect value VMO 26702, 2021-04-30 03:30:00 
+                                    aa13 = Meteo[i].Aa13 == "" ? null : Meteo[i].Aa13,
+                                    aa14 = Meteo[i].Aa14 == "" ? null : Meteo[i].Aa14,
+                                };
+                           
+                                db.MeteoDatas.Add(meteo);
+                          
+                            }
+                             db.SaveChanges();
+                            
+                            
                     }
                     
-
-
+                    //смотрим сколько миллисекунд было затрачено на выполнение
+                    stopwatch.Stop();
+                        TimeSpan ts = stopwatch.Elapsed;
+                        string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
+                           ts.Hours, ts.Minutes, ts.Seconds,
+                           ts.Milliseconds / 10);
+                     //   MessageBox.Show("RunTime " + elapsedTime);
+                      
+                    
                 }
                // MessageBox.Show("Проверка файла: "+ Path.GetFileName(file));
             }

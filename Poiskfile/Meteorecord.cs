@@ -10,14 +10,14 @@ namespace Poiskfile
     {
         private int station;
         private string date;
-        private int wnd1;
-        private int wnd2;
+        private string wnd1;
+        private string wnd2;
         private string wnd3;
-        private int wnd4;
-        private int wnd5;
-        private int tmp1;
+        private string wnd4;
+        private string wnd5;
+        private string tmp1;
         private string tmp2;
-        private int dew1;
+        private string dew1;
         private string dew2;
         private string aa11;
         private string aa12;
@@ -25,7 +25,7 @@ namespace Poiskfile
         private string aa14;
        
 
-        public Meteorecord(int station, string date, int wnd1,int wnd2, string wnd3, int wnd4, int wnd5, int tmp1, string tmp2, int dew1, string dew2,
+        public Meteorecord(int station, string date, string wnd1, string wnd2, string wnd3, string wnd4, string wnd5, string tmp1, string tmp2, string dew1, string dew2,
             string aa11, string aa12, string aa13, string aa14)
         {
             this.station = station;
@@ -47,18 +47,18 @@ namespace Poiskfile
         }
         public int Station { get { return station; } }
         public string Dates { get { return date; } }
-        public int Wnd1 { get { return wnd1; } }
-        public int Wnd2 { get { return wnd2; } }
+        public string Wnd1 { get { return wnd1; } }
+        public string Wnd2 { get { return wnd2; } }
         public string Wnd3 { get { return wnd3; } }
-        public int Wnd4 { get { return wnd4; } }
-        public int Wnd5 { get { return wnd5; } }
-        public int Dew1 { get { return dew1; } }
+        public string Wnd4 { get { return wnd4; } }
+        public string Wnd5 { get { return wnd5; } }
+        public string Dew1 { get { return dew1; } }
         public string Dew2 { get { return dew2; } }
         public string Aa11 { get { return aa11; } }
         public string Aa12 { get { return aa12; } }
         public string Aa13 { get { return aa13; } }
         public string Aa14 { get { return aa14; } }
-        public int Tmp1 { get { return tmp1; } }
+        public string Tmp1 { get { return tmp1; } }
         public string Tmp2 { get { return tmp2; } }
 
         
