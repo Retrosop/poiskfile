@@ -13,7 +13,7 @@ namespace Poiskfile
         [Key]
         public int Id { get; set; }
         [Required]
-        public int station { get; set; }
+        public int station { get; set; } //Index VMO meteostation
         [Required]
         public string date { get; set; }
         public int? wnd1 { get; set; }
@@ -29,6 +29,22 @@ namespace Poiskfile
         public int? aa12 { get; set; }
         public string? aa13 { get; set; }
         public string? aa14 { get; set; }
+    }
+
+    public class Meteostation
+    {
+        [Key]
+        public int Id { get; set; }
+        
+        [Required]
+        public int station { get; set; } //Index VMO meteostation
+        [Required]
+        public string name { get; set; }
+        public string lat { get; set; }
+        public string lon { get; set; }
+        public bool active { get; set; }
+        public int admin_code { get; set; }
+
     }
 
 }

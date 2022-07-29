@@ -148,24 +148,24 @@ namespace Poiskfile
 
                         for (int i = 0; i < Meteo.Count; i++)
                         {
-                              var meteo = new MeteoData()
-                                {
-                                    station = Meteo[i].Station,
-                                    date = Meteo[i].Dates,
-                                    wnd1 = Meteo[i].Wnd1 == "" ? null : int.Parse(Meteo[i].Wnd1),
-                                    wnd2 = Meteo[i].Wnd2 == "" ? null : int.Parse(Meteo[i].Wnd2),
-                                    wnd3 = Meteo[i].Wnd3 == "" ? null : Meteo[i].Wnd3,
-                                    wnd4 = Meteo[i].Wnd4 == "" ? null : int.Parse(Meteo[i].Wnd4),
-                                    wnd5 = Meteo[i].Wnd5 == "" ? null : int.Parse(Meteo[i].Wnd5),
-                                    tmp1 = Meteo[i].Tmp1 == "" ? null : int.Parse(Meteo[i].Tmp1),
-                                    tmp2 = Meteo[i].Tmp2 == "" ? null : Meteo[i].Tmp2,
-                                    dew1 = Meteo[i].Dew1 == "" ? null : int.Parse(Meteo[i].Dew1),
-                                    dew2 = Meteo[i].Dew2 == "" ? null : Meteo[i].Dew2,
-                                    aa11 = Meteo[i].Aa11 == "" ? null : int.Parse(Meteo[i].Aa11),
-                                    aa12 = (Meteo[i].Aa12 == "" | Meteo[i].Aa12 == "U") ? null : int.Parse(Meteo[i].Aa12), //Uncorrect value VMO 26702, 2021-04-30 03:30:00 
-                                    aa13 = Meteo[i].Aa13 == "" ? null : Meteo[i].Aa13,
-                                    aa14 = Meteo[i].Aa14 == "" ? null : Meteo[i].Aa14,
-                                };
+                            var meteo = new MeteoData()
+                            {
+                                station = Meteo[i].Station,
+                                date = Meteo[i].Dates,
+                                wnd1 = Meteo[i].Wnd1 == "" ? null : int.Parse(Meteo[i].Wnd1),
+                                wnd2 = Meteo[i].Wnd2 == "" ? null : int.Parse(Meteo[i].Wnd2),
+                                wnd3 = Meteo[i].Wnd3 == "" ? null : Meteo[i].Wnd3,
+                                wnd4 = Meteo[i].Wnd4 == "" ? null : int.Parse(Meteo[i].Wnd4),
+                                wnd5 = Meteo[i].Wnd5 == "" ? null : int.Parse(Meteo[i].Wnd5),
+                                tmp1 = Meteo[i].Tmp1 == "" ? null : int.Parse(Meteo[i].Tmp1),
+                                tmp2 = Meteo[i].Tmp2 == "" ? null : Meteo[i].Tmp2,
+                                dew1 = Meteo[i].Dew1 == "" ? null : int.Parse(Meteo[i].Dew1),
+                                dew2 = Meteo[i].Dew2 == "" ? null : Meteo[i].Dew2,
+                                aa11 = Meteo[i].Aa11 == "" ? null : int.Parse(Meteo[i].Aa11), // Define prepition in format (a,b,c,d)
+                                aa12 = Meteo[i].Aa12.Length == 4 ? int.Parse(Meteo[i].Aa12) : null, 
+                                aa13 = Meteo[i].Aa11 == "" ? null : Meteo[i].Aa13,
+                                aa14 = Meteo[i].Aa11 == "" ? null : Meteo[i].Aa14,
+                            };
                            
                                 db.MeteoDatas.Add(meteo);
                           
